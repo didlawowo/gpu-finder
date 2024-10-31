@@ -1,0 +1,29 @@
+version: '3'
+
+tasks:
+  find-gpu:
+    desc: find gpu pricing
+    cmds:
+    - python gpu-finder.py
+
+  setup:
+    desc: setup env
+    cmds:
+    - pipenv shell
+
+  install:
+    desc: Install dependencies using pip
+    cmds:
+    - uv pip install -r requirements.txt
+
+  gcloud-login:
+    desc: Authenticate with Google Cloud
+    cmds:
+    - gcloud auth login
+    - gcloud auth application-default login
+    - gcloud config set project dc-consulting-home
+
+  add-billing-gcp:
+    desc: Add billing to Google Cloud
+    cmds:
+    - gcloud services enable cloudbilling.googleapis.com
